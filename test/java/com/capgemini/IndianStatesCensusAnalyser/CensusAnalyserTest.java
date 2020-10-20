@@ -9,6 +9,10 @@ public class CensusAnalyserTest {
 			+ "test/java/com/capgemini/IndianStatesCensusAnalyser/IndianCensus/IndianCensus.csv";
 	private static final String INDIAN_CENSUS_WRONG_CSV_FILE_PATH="/eclipse-workspace/IndianStatesCensusAnalyser/src/"
 			+ "test/java/capgemini/IndianStatesCensusAnalyser/IndianCensus/IndianCensus.csv";
+	private static final String INDIAN_CENSUS_WRONG_TYPE_CSV_FILE_PATH="/eclipse-workspace/IndianStatesCensusAnalyser/src"
+			+ "/test/java/capgemini/IndianStatesCensusAnalyser/IndianCensus/IndianCensus.txt";
+	
+	
 	@Test
 	public void givenIndianCensusCSVFileReturnsCorrectsRecords() throws Exception {
 		try {
@@ -30,4 +34,18 @@ public class CensusAnalyserTest {
 			Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
 		}
 	}
+	
+	@Test 
+	public void givenIndiaCensusData_WithWrongFileType_ShouldThrowException() {
+		try {
+			StateCensusAnalyser censusAnalyser = new StateCensusAnalyser();
+			
+			ExpectedException exceptionRule = ExpectedException.none();
+			exceptionRule.expect(CensusAnalyserException.class);
+			censusAnalyser.loadIndiaCensusData(INDIAN_CENSUS_WRONG_TYPE_CSV_FILE_PATH);
+		} catch (CensusAnalyserException e) {
+			Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
+		}
+	}
+	
 }
