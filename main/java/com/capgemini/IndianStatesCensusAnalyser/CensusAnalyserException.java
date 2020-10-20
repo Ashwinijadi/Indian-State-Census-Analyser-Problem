@@ -1,6 +1,14 @@
 package com.capgemini.IndianStatesCensusAnalyser;
 
 public class CensusAnalyserException extends Exception {
+
+	private static final long serialVersionUID = 1L;
+
+	public CensusAnalyserException(String message, String name) {
+		super(message);
+		this.type = ExceptionType.valueOf(name);
+	}
+
 	enum ExceptionType {
 		CENSUS_FILE_PROBLEM;
 	}
