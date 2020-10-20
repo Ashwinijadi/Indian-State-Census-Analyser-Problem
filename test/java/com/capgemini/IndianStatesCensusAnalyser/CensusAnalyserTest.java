@@ -11,7 +11,8 @@ public class CensusAnalyserTest {
 			+ "test/java/capgemini/IndianStatesCensusAnalyser/IndianCensus/IndianCensus.csv";
 	private static final String INDIAN_CENSUS_WRONG_TYPE_CSV_FILE_PATH="/eclipse-workspace/IndianStatesCensusAnalyser/src"
 			+ "/test/java/capgemini/IndianStatesCensusAnalyser/IndianCensus/IndianCensus.txt";
-	
+	private static final String INDIAN_CENSUS_WRONG_DELIMITER_CSV_FILE_PATH="/eclipse-workspace/IndianStatesCensusAnalyser/src"
+			+ "/test/java/com/capgemini/IndianStatesCensusAnalyser/IndianCensus/CensusDelimiter.csv"  ; 
 	
 	@Test
 	public void givenIndianCensusCSVFileReturnsCorrectsRecords() throws Exception {
@@ -39,7 +40,6 @@ public class CensusAnalyserTest {
 	public void givenIndiaCensusData_WithWrongFileType_ShouldThrowException() {
 		try {
 			StateCensusAnalyser censusAnalyser = new StateCensusAnalyser();
-			
 			ExpectedException exceptionRule = ExpectedException.none();
 			exceptionRule.expect(CensusAnalyserException.class);
 			censusAnalyser.loadIndiaCensusData(INDIAN_CENSUS_WRONG_TYPE_CSV_FILE_PATH);
@@ -48,4 +48,13 @@ public class CensusAnalyserTest {
 		}
 	}
 	
+	@Test
+	public void givenWrongDelimiter_InIndiaCensusData_ShouldReturnCustomExceptionType() {
+		try {
+			StateCensusAnalyser censusAnalyser = new StateCensusAnalyser();
+			censusAnalyser.loadIndiaCensusData(INDIAN_CENSUS_WRONG_DELIMITER_CSV_FILE_PATH );
+		} catch (CensusAnalyserException e) {
+			Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
+		}
+	}
 }
