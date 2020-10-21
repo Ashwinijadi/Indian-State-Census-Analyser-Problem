@@ -123,4 +123,15 @@ public class CensusAnalyserTest {
 			Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
 		}
 	}
+	
+	@Test
+	public void givenMissingHeader_InStateCodeData_ShouldReturnCustomExceptionType() {
+		try {
+			StateCensusAnalyser censusAnalyser = new StateCensusAnalyser();
+			censusAnalyser.loadIndiaCensusData(STATE_CODE_WRONG_HEADER_CSV_FILE_PATH);
+		} catch (CensusAnalyserException e) {
+			Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
+		}
+	}
+	
 }
