@@ -113,4 +113,14 @@ public class CensusAnalyserTest {
 			Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
 		}
 	}
+
+	@Test
+	public void givenWrongDelimiter_InStateCodeData_ShouldReturnCustomExceptionType() {
+		try {
+			StateCensusAnalyser censusAnalyser = new StateCensusAnalyser();
+			censusAnalyser.loadIndiaCensusData(STATE_CODE_WRONG_DELIMITER_CSV_FILE_PATH);
+		} catch (CensusAnalyserException e) {
+			Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
+		}
+	}
 }
