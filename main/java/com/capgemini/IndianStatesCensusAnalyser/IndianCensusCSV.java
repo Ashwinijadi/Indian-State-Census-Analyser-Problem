@@ -16,7 +16,7 @@ public class IndianCensusCSV {
 
 	@Override
 	public String toString() {
-		return "IndianCensusCSV [state=" + state +  ", population=" + population + ", areaInSqKm=" + areaInSqKm
+		return "IndianCensusCSV [state=" + state + ", population=" + population + ", areaInSqKm=" + areaInSqKm
 				+ ", densityPerSqKm=" + densityPerSqKm + "]";
 	}
 }

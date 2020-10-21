@@ -3,6 +3,7 @@ package com.capgemini.IndianStatesCensusAnalyser;
 import com.opencsv.bean.CsvBindByName;
 
 public class IndiaStateCodeCSV {
+
 	@CsvBindByName(column = "SrNo", required = true)
 	public String srNo;
 
@@ -17,8 +18,7 @@ public class IndiaStateCodeCSV {
 
 	@Override
 	public String toString() {
-		return "IndiaStateCodeCSV [srNo=" + srNo + ", stateName=" + stateName + ", tin=" + tin + ", stateCode="
-				+ stateCode + "]";
+		return "IndiaStateCodeCSV{" + "srNo='" + srNo + '\'' + ", stateName=" + stateName + ", tin=" + tin
+				+ ", stateCode=" + stateCode + '}';
 	}
-
 }
